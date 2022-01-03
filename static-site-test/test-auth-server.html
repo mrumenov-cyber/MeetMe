@@ -32,7 +32,7 @@
       const resultElement = document.getElementById("result");
       const resultLink = document.getElementById("authURL");
       // Replace this with your own endpoint
-      const getAuthURL = "YOUR_LAMBDA_GET_AUTH_URL_ENDPOINT";
+      const getAuthURL = "https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcalendar.readonly&response_type=code&client_id=669112210357-9gr25fj26cvg8mb7jfu6l8gnh6hhiboc.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fmrumenov-cyber.github.io%2FMeetMe%2F\";
 
       getCodeElement.onclick = function () {
         fetch(getAuthURL)
