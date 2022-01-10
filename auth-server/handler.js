@@ -137,12 +137,12 @@ module.exports.getAccessToken = async (event) => {
          *  The callback in this case is an arrow function with the results as parameters: “err” and “token.”
          */
     
-       oAuth2Client.getToken(access_token, (err, token) => {
-           if (err) {
-             return reject(err);
-           }
-           return resolve(token);
-         });
+        // oAuth2Client.getToken(access_token, (err, token) => {
+        //   if (err) {
+        //     return reject(err);
+        //   }
+        //   return resolve(token);
+        // });
       })
         .then((results) => {
           // Respond with OAuth token 
