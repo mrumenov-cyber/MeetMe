@@ -16,11 +16,13 @@ class CitySearch extends Component {
         suggestions,
       });
     };
-
+    
+  
     handleItemClicked = (suggestion) => {
       this.setState({
         query: suggestion
       });
+      this.props.updateEvents(suggestion);
     }
 
     render() {
@@ -34,15 +36,15 @@ class CitySearch extends Component {
             />
             <ul className="suggestions">
                 {this.state.suggestions.map((suggestion) => (
-                    <li
+                  <li
                     key={suggestion}
                     onClick={() => this.handleItemClicked(suggestion)}
                   >{suggestion}</li>
                 ))}
-                <li>
-                    <b>See all cities</b>
+                <li onClick={() => this.handleItemClicked("all")}>
+                  <b>See all cities</b>
                 </li>
-                </ul>
+              </ul>
           </div>
         );
       }
