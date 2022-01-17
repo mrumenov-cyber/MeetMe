@@ -6,6 +6,7 @@ import { extractLocations } from '../api';
 
 describe('<CitySearch /> component', () => {
     let locations, CitySearchWrapper;
+    CitySearchWrapper = shallow(<CitySearch locations={locations} updateEvents={() => {}} />);
     beforeAll(() => {
       locations = extractLocations(mockData);
       CitySearchWrapper = shallow(<CitySearch locations={locations} />);
@@ -45,6 +46,8 @@ describe('<CitySearch /> component', () => {
         });
         expect(CitySearchWrapper.state("suggestions")).toEqual(filteredLocations);
       });
+
+      
       
 
 });
