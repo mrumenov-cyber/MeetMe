@@ -60,7 +60,7 @@ describe('<CitySearch /> component', () => {
         });
         CitySearchWrapper.find('.suggestions li').at(0).simulate('click');
         expect(CitySearchWrapper.state('showSuggestions')).toBe(false);
-        expect(CitySearchWrapper.find('.suggestions').prop('style')).toEqual({ display: 'none' });
-      }); 
-
+        expect(CitySearchWrapper.find('.suggestions').prop('style')).toEqual({ display: 'none' 
+        });
+    }); 
 });

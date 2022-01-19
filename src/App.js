@@ -8,7 +8,7 @@ class App extends Component {
   state = {
     events: [],
     locations: [],
-    numberOfEvents: 32,
+    numberOfEvents: 30,
   }
 
   componentDidMount() {
@@ -22,7 +22,7 @@ class App extends Component {
       }
     });
   }
-  
+
   componentWillUnmount(){
     this.mounted = false;
   }  
