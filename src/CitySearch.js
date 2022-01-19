@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {updateEvents} from './App';
 
 class CitySearch extends Component {
   state = {
@@ -24,6 +25,7 @@ class CitySearch extends Component {
         query: suggestion,
         showSuggestions: false,
       });
+
       this.props.updateEvents(suggestion);
     }
 
