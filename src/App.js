@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
-import { getEvents } from './api';
+import { extractLocations, getEvents } from './api';
 
 class App extends Component {
   state = {
@@ -20,6 +20,16 @@ class App extends Component {
       });
     });
   }
+
+  componentDidMount() {
+    getEvents().then((events) => {
+      this.setState({ events, locations: extractLocations(events) });
+    });
+  }
+  componentWillUnmount(){
+    this.mounted = false;
+  }  
+
 
   render() {
     return (
