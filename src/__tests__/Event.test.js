@@ -19,7 +19,7 @@ describe ('<Event /> component', () => {
     });
 
     test("Timezone and date are displayed", ()=> {
-        expect(EventWrapper.find(".timezone-date")).toHaveLength(1);
+        expect(EventWrapper.find(".start-date")).toHaveLength(1);
     });
 
     test("Show/Hide deatils button is rendered", () =>{

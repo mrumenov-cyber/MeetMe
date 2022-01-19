@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Button from 'react-bootstrap/Button';
+import {Button, Container} from 'react-bootstrap';
 
 class Event extends Component {
 
@@ -17,13 +17,26 @@ class Event extends Component {
         const {event} = this.props;
         const { collapsed } = this.state;
         return(
-            <div className="event">
-                <h2 className="summary"> Summary : {event.summary} </h2>
+        <Container className="event">
+                <h2 className="summary"> {event.summary} </h2>
                 <div className="location">Location: @{event.summary} | {event.location}</div>
-                <div className="timezone-date">Time Zone and Date</div>
-                <Button className={`${collapsed ? "show" : "hide"}-details-btn`}
-                onClick={this.handleClick}>{collapsed ? "Show Details" : "Hide Details"}</Button>
-            </div>
+                <div className="start-date">Time Zone and Date: {event.dateTime} ({event.timeZone})</div>
+                <br/>
+                {!collapsed && (
+                    <div className={`extra-details ${this.state.collapsed ? "hide" : "show"}`}>
+                        <br/>
+                        <h4 className="about">About Event</h4>
+                        <a href={event.htmlLink} target="_blank" rel="noreferrer">
+                            See deatails on Google calendar
+                        </a>
+                        <p className="event-description">{event.description}</p>
+                        <br/>
+                    </div>
+                )}
+                <Button size="med" className={`${collapsed ? "show" : "hide"}-details-btn`}
+                onClick={this.handleClick}>{collapsed ? "Show Details" : "Hide Details"} </Button>
+        </Container>
+               
         );
     }
 }
