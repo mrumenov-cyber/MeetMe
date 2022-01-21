@@ -2,7 +2,7 @@ import React, {Component} from "react";
 
 class NumberOfEvents extends Component{
     state = {
-        numberOfEvents: 30,
+        numberOfEvents: 32,
     };
 
     onChangeHandler = (event) => {

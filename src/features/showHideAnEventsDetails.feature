@@ -1,16 +1,16 @@
-Feature: Show/Hide an Event’s Details
+Feature: Show/hide an event's details
 
-Scenario: An event element is collapsed by default
-Given the user is on the home page
-When An eventlist is displayed
-Then the event element is collapsed by default
+  Scenario: An event element is collapsed by default
+    Given this user is on the main page
+    When the user recieves a list of upcoming events
+    Then the event element is collapsed by default
 
-Scenario: User can expand an event to see its details
-Given the user is on the main page and list of events has been loaded
-When the user clicks on the show-details-button of an event
-Then the event element will be expanded to show the event details
+  Scenario: User can expand an event to see its details
+    Given the user is on the main page and has a list of the events
+    When the user clicks on the Show details button of an event element
+    Then the user can expand the event to see its details
 
-Scenario: User can collapse an event to hide its details
-Given the user has expanded an event to see its details
-When the user has clicked on hide-details-button
-Then the event details will be hidden
+  Scenario: User can collapse an event to hide its details
+    Given the user has expanded to see the event's details
+    When the user clicks on the Hide details button of the event element
+    Then the event's details will be hidden
