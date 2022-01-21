@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {updateEvents} from './App';
 
 class CitySearch extends Component {
   state = {
