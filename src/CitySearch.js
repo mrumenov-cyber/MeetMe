@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {updateEvents} from './App';
 
 class CitySearch extends Component {
   state = {
     query: '',
     suggestions: [],
     showSuggestions: undefined,
+    numberOfEvents: 32,
   }
 
     handleInputChanged = (event) => {
