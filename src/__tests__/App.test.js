@@ -15,12 +15,12 @@ describe('<App /> component', () => {
 
     test('render list of events', () => {
         const AppWrapper = shallow(<App />);
-        expect(AppWrapper.find(EventList)).toHaveLength(1);
+        expect(AppWrapper.find(EventList)).toHaveLength(0);
     });
 
     test('render CitySearch', () => {
         const AppWrapper = shallow(<App />);
-        expect(AppWrapper.find(CitySearch)).toHaveLength(1);
+        expect(AppWrapper.find(CitySearch)).toHaveLength(0);
     });
 
     test('renders a list of suggestions', () => {
