@@ -6,7 +6,7 @@ import CitySearch from "./CitySearch";
 import NumberOfEvents from "./NumberOfEvents";
 import { extractLocations, getEvents, checkToken, getAccessToken  } from "./api";
 import { OfflineAlert } from "./Alert";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import WelcomeScreen from './WelcomeScreen';
 import {
   ScatterChart,
@@ -26,7 +26,6 @@ class App extends Component {
     showWelcomeScreen: undefined,
     numberOfEvents: 32,
     currentLocation: '',
- 
   };
  
 
@@ -82,14 +81,12 @@ class App extends Component {
   };
 
   getData = () => {
-    const { locations, events } = this.state;
-    const data = locations.map((location) => {
-      const number = events.filter(
-        (event) => event.location === location
-      ).length;
-      const city = location.split(", ").shift();
-      return { city, number };
-    });
+    const {locations, events} = this.state;
+    const data = locations.map((location)=>{
+      const number = events.filter((event) => event.location === location).length
+      const city = location.split(', ').shift()
+      return {city, number};
+    })
     return data;
   };
 
@@ -110,8 +107,9 @@ class App extends Component {
         />
         <br/>
 
-      <Col>
-        <ResponsiveContainer height="100%">
+      <Card>
+      <h4>Events in each city</h4>
+        <ResponsiveContainer height={400}>
         <ScatterChart
           width={400}
           height={400}
@@ -134,7 +132,7 @@ class App extends Component {
                 <Scatter data={this.getData()} fill="#8884d8" />
               </ScatterChart>
             </ResponsiveContainer>
-        </Col>
+        </Card>
 
         <EventList
           events={this.state.events}
