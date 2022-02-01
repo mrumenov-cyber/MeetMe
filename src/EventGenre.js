@@ -3,43 +3,44 @@ import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 
 const EventGenre = ({ events }) => {
   const [data, setData] = useState([]);
-
-  const genres = ["React", "JavaScript", "Node", "jQuery", "Angular JS"];
-  const COLORS = ["#ef973c", "#62b3e9", "#e06666", "#8e7cc3", "#00bcd4"];
-
-  const getData = () => {
-    let data = genres.map((genre) => {
-      const value = events.filter((event) =>
-        event.summary.split(" ").includes(genre)
-      ).length;
-
-      return { name: genre, value: value };
-    });
-    data = data.filter((data) => data.value);
-    return data;
-  };
-
   useEffect(() => {
+    const getData = () => {
+      const genres = ["React", "JavaScript", "Node", "jQuery", "AngularJS"];
+
+      const data = genres.map((genre) => {
+        const value = events.filter(({ summary }) =>
+          summary.split(" ").includes(genre)
+        ).length;
+        return { name: genre, value };
+      });
+      return data;
+    };
     setData(() => getData());
   }, [events]);
 
+  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#DC143C"];
+
   return (
-    <ResponsiveContainer height={400} >
-      <PieChart width={300} height={300} >
+    <ResponsiveContainer height={400}>
+      <PieChart width={400} height={400}>
         <Pie
           data={data}
-          cx={"50%"}
-          cy={"50%"}
+          cx={200}
+          cy={200}
           labelLine={false}
-          innerRadius={30}
+          outerRadius={80}
+          fill="#8884d8"
+          dataKey="value"
           label={({ name, percent }) =>
             `${name} ${(percent * 100).toFixed(0)}%`
           }
-          outerRadius={90}
-          dataKey="value"
         >
           {data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+            <Cell
+              key={`cell-${index}`}
+              fill={COLORS[index % COLORS.length]}
+              name={entry.name}
+            />
           ))}
         </Pie>
       </PieChart>

@@ -6,6 +6,7 @@ import CitySearch from "./CitySearch";
 import NumberOfEvents from "./NumberOfEvents";
 import { extractLocations, getEvents, checkToken, getAccessToken  } from "./api";
 import { OfflineAlert } from "./Alert";
+import EventGenre from "./EventGenre";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import WelcomeScreen from './WelcomeScreen';
 import {
@@ -105,14 +106,15 @@ class App extends Component {
         <NumberOfEvents
           updateNumberOfEvents={this.updateNumberOfEvents}
         />
-        <br/>
-
+      <br/>
+      <div className="data-vis-wrapper">
+      <EventGenre events={this.state.events} />
       <Card>
+      <br/>
       <h4>Events in each city</h4>
+      <p>Take your pointer to each dot, to see number of events on that location </p>
         <ResponsiveContainer height={400}>
         <ScatterChart
-          width={400}
-          height={400}
           margin={{
             top: 20,
             right: 20,
@@ -133,6 +135,11 @@ class App extends Component {
               </ScatterChart>
             </ResponsiveContainer>
         </Card>
+        
+        
+        </div>
+
+        <br/>
 
         <EventList
           events={this.state.events}
