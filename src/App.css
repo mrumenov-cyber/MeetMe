@@ -49,6 +49,7 @@ input[type="number"] {
   position: relative;
 }
 
+
 .suggestions {
   width: 250px;
   position: absolute;
@@ -129,8 +130,8 @@ input[type="number"] {
 }
 
 .Alert {
-  position: fixed;
-  top: 20px;
+  position: relative;
+  
 }
 
 .data-vis-wrapper {

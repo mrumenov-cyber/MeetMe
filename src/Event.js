@@ -19,8 +19,8 @@ class Event extends Component {
         return(
         <Container className="event">
                 <h2 className="summary"> {event.summary} </h2>
-                <div className="location">Location: @{event.summary} | {event.location}</div>
-                <div className="start-date">Time Zone and Date: {event.dateTime} ({event.timeZone})</div>
+                <div className="location">Location: @{event.summary} -- {event.location}</div>
+                <div className="start-date">Time Zone and Date: {event.start.dateTime} -- ({event.start.timeZone})</div>
                 <br/>
                 {!collapsed && (
                     <div className={`extra-details ${this.state.collapsed ? "hide" : "show"}`}>

@@ -13,12 +13,12 @@ export const extractLocations = (events) => {
   return locations;
 };
 
-const checkToken = async (accessToken) => {
+export const checkToken = async (accessToken) => {
   const result = await fetch(
     `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
   )
     .then((res) => res.json())
-    .catch((error) => error.json());
+    .catch((error) => error);
 
   return result;
 };
@@ -44,8 +44,12 @@ export const getEvents = async () => {
     NProgress.done();
     return mockData;
   }
-
-
+  // when user is not online (is offline) show last viewd eevnts from local storage
+  if (!navigator.onLine) {
+    const data = localStorage.getItem("lastEvents");
+    NProgress.done();
+    return data ? JSON.parse(data).events:[];
+  }
   const token = await getAccessToken();
 
   if (token) {
@@ -56,9 +60,9 @@ export const getEvents = async () => {
       var locations = extractLocations(result.data.events);
       localStorage.setItem("lastEvents", JSON.stringify(result.data));
       localStorage.setItem("locations", JSON.stringify(locations));
-    }
-    NProgress.done();
-    return result.data.events;
+      }
+      NProgress.done();
+      return result.data.events;
   }
 };
 

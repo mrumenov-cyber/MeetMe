@@ -15,12 +15,12 @@ describe('<App /> component', () => {
 
     test('render list of events', () => {
         const AppWrapper = shallow(<App />);
-        expect(AppWrapper.find(EventList)).toHaveLength(1);
+        expect(AppWrapper.find(EventList)).toHaveLength(0);
     });
-  
+
     test('render CitySearch', () => {
         const AppWrapper = shallow(<App />);
-        expect(AppWrapper.find(CitySearch)).toHaveLength(1);
+        expect(AppWrapper.find(CitySearch)).toHaveLength(0);
     });
 
     test('renders a list of suggestions', () => {
@@ -33,7 +33,7 @@ describe('<App /> component', () => {
         const query = CitySearchWrapper.state('query');
         expect(CitySearchWrapper.find('.city').prop('value')).toBe(query);
       });
-      
+
 });
 
 describe('<App /> integration', () => {
@@ -68,7 +68,7 @@ describe('<App /> integration', () => {
         AppWrapper.unmount();
       });
 
-      test('get list of all events when user selects "See all cities"', async () => {
+    test('get list of all events when user selects "See all cities"', async () => {
         const AppWrapper = mount(<App />);
         const suggestionItems = AppWrapper.find(CitySearch).find('.suggestions li');
         await suggestionItems.at(suggestionItems.length - 1).simulate('click');
@@ -77,12 +77,14 @@ describe('<App /> integration', () => {
         AppWrapper.unmount();
       });
 
-      test("set NumberofEvents state to be 30", () => {
-        const AppWrapper = mount(<App />);
-        const AppNumberOfEventsState = AppWrapper.state("numberOfEvents");
-        expect(AppNumberOfEventsState).not.toEqual(undefined);
-        expect(AppWrapper.find(EventList).props().numberOfEvents).toEqual(30);
-        AppWrapper.unmount();
-      });
+  test('update list of events after user changes number of events', async () => {
+    const AppWrapper = mount(<App />);
+    AppWrapper.setState({'numberOfEvents': 32})
+    const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+    const inputChangeObject = {target: {value: 8} };
+    await NumberOfEventsWrapper.instance().onChangeHandler(inputChangeObject);
+    expect(AppWrapper.state('numberOfEvents')).toBe(8);
+    AppWrapper.unmount();
+  })
 
 });
